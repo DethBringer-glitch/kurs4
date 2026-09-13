@@ -1,6 +1,8 @@
 from time import sleep as wait
 import os
-dataset = [541, 934, 661, -868, 709, -277, 142, 493, 286, 733, -229, 79]
+import utils
+from random import randint as rand
+dataset = [rand(-1000, 1000) for i in range(2000)]
 t = b = -868
 l44 = 0
 def sort_vibor(dataset):
@@ -89,6 +91,25 @@ def sort_puz(dataset):
                 dataset[j], dataset[j+1] = dataset[j+1], dataset[j]
     return(dataset)
 sort6 = sort_puz(dataset)
+def sort_slian(dataset):
+    N = len(dataset) // 2
+    a, b = dataset[:N], dataset[N:]
+    if len(a) > 1:
+        a = sort_slian(a)
+    if len(b) > 1:
+        b = sort_slian(b)
+    return utils.merge_list(a, b)
+sort7 = sort_slian(dataset)
+
+def quick_sort(dataset):
+    if len(dataset) > 1:
+        x = dataset[rand(0, len(dataset)-1)]
+        lower = [u for u in dataset if u < x]
+        cent = [u for u in dataset if u == x]
+        upper = [u for u in dataset if u > x]
+        dataset = quick_sort(lower) + cent + quick_sort(upper)
+    return(dataset)
+sort8 = quick_sort(dataset)
 while True:
     os.system('cls')
     print('Привет!' if l44 == 0 else 'Привет еще раз!')
@@ -99,92 +120,37 @@ while True:
     print('4. Сортировка вставками')
     print('5. Бинарный поиск')
     print('6. Сортировка пузырем')
+    print('7. Сортировка слиянием')
     m1 = int(input('Введите число: '))
     if m1 == 1:
         print(sort1)
-        wait(1)
-        print('Продолжаем?\n 1. Да\n 2. Нет')
-        n2 = int(input('Введите число: '))
-        if n2 == 1:
-            l44 += 1
-            print('Секунду!')
-            wait(1.5)
-            continue
-        else:
-            print('Пока!')
-            wait(1.5)
-            break
     elif m1 == 2:
         print(sort2)
-        wait(1)
-        print('Продолжаем?\n 1. Да\n 2. Нет')
-        n2 = int(input('Введите число: '))
-        if n2 == 1:
-            l44 += 1
-            print('Секунду!')
-            wait(1.5)
-            continue
-        else:
-            print('Пока!')
-            wait(1.5)
-            break
     elif m1 == 3:
         print(sort3)
-        wait(1)
-        print('Продолжаем?\n 1. Да\n 2. Нет')
-        n2 = int(input('Введите число: '))
-        if n2 == 1:
-            l44 += 1
-            print('Секунду!')
-            wait(1.5)
-            continue
-        else:
-            print('Пока!')
-            wait(1.5)
-            break
     elif m1 == 4:
         print(sort4)
-        wait(1)
-        print('Продолжаем?\n 1. Да\n 2. Нет')
-        n2 = int(input('Введите число: '))
-        if n2 == 1:
-            l44 += 1
-            print('Секунду!')
-            wait(1.5)
-            continue
-        else:
-            print('Пока!')
-            wait(1.5)
-            break
     elif m1 == 5:
         print(sort5)
-        wait(1)
-        print('Продолжаем?\n 1. Да\n 2. Нет')
-        n2 = int(input('Введите число: '))
-        if n2 == 1:
-            l44 += 1
-            print('Секунду!')
-            wait(1.5)
-            continue
-        else:
-            print('Пока!')
-            wait(1.5)
-            break
     elif m1 == 6:
         print(sort6)
-        wait(1)
-        print('Продолжаем?\n 1. Да\n 2. Нет')
-        n2 = int(input('Введите число: '))
-        if n2 == 1:
-            l44 += 1
-            print('Секунду!')
-            wait(1.5)
-            continue
-        else:
-            print('Пока!')
-            wait(1.5)
-            break
+    elif m1 == 7:
+        print(sort7)
+    elif m1 == 8:
+        print(sort8)
     else:
         l44 += 1
         wait(1)
         continue
+    wait(1)
+    print('Продолжаем?\n 1. Да\n 2. Нет')
+    n2 = int(input('Введите число: '))
+    if n2 == 1:
+        l44 += 1
+        print('Секунду!')
+        wait(1.5)
+        continue
+    else:
+        print('Пока!')
+        wait(1.5)
+        break
