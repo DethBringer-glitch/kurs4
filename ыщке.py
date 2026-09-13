@@ -82,6 +82,13 @@ def sort_bin(dataset):
     return(dataset)
 sort5 = sort_bin(dataset)
 def sort_puz(dataset):
+    N = len(dataset)
+    for i in range(N - 1):
+        for j in range(N - 1 - i):
+            if dataset[j] > dataset[j+1]:
+                dataset[j], dataset[j+1] = dataset[j+1], dataset[j]
+    return(dataset)
+sort6 = sort_puz(dataset)
 while True:
     os.system('cls')
     print('Привет!' if l44 == 0 else 'Привет еще раз!')
@@ -151,6 +158,20 @@ while True:
             break
     elif m1 == 5:
         print(sort5)
+        wait(1)
+        print('Продолжаем?\n 1. Да\n 2. Нет')
+        n2 = int(input('Введите число: '))
+        if n2 == 1:
+            l44 += 1
+            print('Секунду!')
+            wait(1.5)
+            continue
+        else:
+            print('Пока!')
+            wait(1.5)
+            break
+    elif m1 == 6:
+        print(sort6)
         wait(1)
         print('Продолжаем?\n 1. Да\n 2. Нет')
         n2 = int(input('Введите число: '))
