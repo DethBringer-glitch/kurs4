@@ -9,7 +9,7 @@ class ClickerApp(QWidget):
     super().__init__()
     if os.path.exists('counter.txt'):
       with open('counter.txt', 'r', encoding='utf-8') as f:
-        self.counter = int(f.read(), 2)
+        self.counter = int(f.read(), 3)
     else:
       self.counter = 0
     self.initUI()
@@ -34,7 +34,7 @@ class ClickerApp(QWidget):
   def add_click(self):
     self.counter += 1
     with open('counter.txt', 'w', encoding='utf-8') as f:
-      f.write(bin(self.counter)[2::])
+      f.write(bin(self.counter)[3::])
     self.label.setText(f'{self.counter}')
 
 
